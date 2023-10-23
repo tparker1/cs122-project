@@ -20,7 +20,7 @@ Our interface will have at least 4 widgets such as buttons, drop-down windows, o
 
 ### Data Collection and Storage Plan
 
-Data will be scraped from [] website and stored in a csv file.
+Data will be scraped from [] website and stored in daily csv files.
 
 ### Data Analysis and Visualization Plan
 
