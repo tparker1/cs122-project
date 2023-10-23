@@ -26,13 +26,13 @@ Widget 4: A button to show "detailed data" for a given movie, like overall gross
 
 ### Data Collection and Storage Plan
 
-Data will be scraped from [Box Office Mojo(https://www.boxofficemojo.com/date/) website and stored in weekly **tab-delimited** "csv" files.
+Data will be scraped from [Box Office Mojo](https://www.boxofficemojo.com/date/) website and stored in weekly **tab-delimited** "csv" files.
 Data will preserve the format of the scraped data-- that is, we will store the data with a header and data:
 
-| Rank (This week) | LW  | Release Gross          | %± LW       | Theaters | Change | Average | Total Gross | Weeks       | Distributor |
-| ---------------- | --- | ---------------------- | ----------- | -------- | ------ | ------- | ----------- | ----------- | ----------- | ------------------ |
-| 2                | 1   | The Exorcist: Believer | $14,675,000 | -56.7%   | 3,684  | +21     | $3,983      | $48,601,950 | 2           | Universal Pictures |
-|                  |     |                        |             |          |        |         |             |             |             |
+| Rank (This week) | LW  | Release                | Gross       | %± LW  | Theaters | Change | Average | Total Gross | Weeks | Distributor        |
+| ---------------- | --- | ---------------------- | ----------- | ------ | -------- | ------ | ------- | ----------- | ----- | ------------------ |
+| 2                | 1   | The Exorcist: Believer | $14,675,000 | -56.7% | 3,684    | +21    | $3,983  | $48,601,950 | 2     | Universal Pictures |
+|                  |     |                        |             |        |          |        |         |             |       |                    |
 
 ### Data Analysis and Visualization Plan
 
