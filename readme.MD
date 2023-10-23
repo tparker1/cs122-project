@@ -1,6 +1,6 @@
 # CS 122 Project 1
 
-Project Name
+Box Office
 
 ## Authors
 
@@ -8,8 +8,6 @@ Project Name
 - Tara Parker
 
 ## Project Description
-
-lorem ipsum
 
 ## Project Outline/Plan
 
@@ -20,7 +18,7 @@ Our interface will have at least 4 widgets such as buttons, drop-down windows, o
 
 ### Data Collection and Storage Plan
 
-Data will be scraped from [] website and stored in daily csv files.
+Data will be scraped from [Box Office Mojo(https://www.boxofficemojo.com/date/) website and stored in monthly csv files.
 
 ### Data Analysis and Visualization Plan
 
