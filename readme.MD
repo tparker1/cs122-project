@@ -9,9 +9,11 @@ Box Office
 
 ## Project Description
 
+We will create an interface written in Python to obtain, analyze, and visualize daily box office data from the internet. The project will be a collaborative effort and will consist of the components listed below, in line with the project requirements.
+
 ## Project Outline/Plan
 
-We will create an interface written in Python to obtain, analyze, and visualize daily box office data from the internet. The project will be a collaborative effort and will consist of the components listed below, in line with the project requirements.
+
 
 ### Interface Plan
 
