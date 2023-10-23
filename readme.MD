@@ -11,6 +11,8 @@ Box Office
 
 ## Project Outline/Plan
 
+We will create an interface written in Python to obtain, analyze, and visualize daily box office data from the internet. The project will be a collaborative effort and will consist of the components listed below, in line with the project requirements.
+
 ### Interface Plan
 
 The interface will be a Graphic User Interface (GUI) generated with Python’s Tkinter library, or a web interface, created with Flask. Our interface will have at least two windows, such as a home screen and a pop-up window.
@@ -18,7 +20,7 @@ Our interface will have at least 4 widgets such as buttons, drop-down windows, o
 
 ### Data Collection and Storage Plan
 
-Data will be scraped from [Box Office Mojo(https://www.boxofficemojo.com/date/) website and stored in monthly csv files.
+Data will be scraped from [Box Office Mojo(https://www.boxofficemojo.com/date/) website and stored in monthly csv files. 
 
 ### Data Analysis and Visualization Plan
 
