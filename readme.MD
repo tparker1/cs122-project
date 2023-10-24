@@ -11,13 +11,13 @@ Box Office Dashboard
 
 Box Office Dashboard (BOD) allows users to visualize trends at the box office through an interactive dashboard. BOD is a Python-based web interface to obtain, analyze, and visualize box office data from Box Office Mojo by IMDB. BOD will allow users to load in the latest and historical box office data to visuazlize temporal trends. BOD will display timeseries and bar charts for weekly box office data, such as overall gross and #1 releases. Futhermore, BOD will allow users to access detailed information by displaying pie charts of top movies for each week, weighted by their weekly gross. By combining data collection, storage, and visualization techniques, BOD aims to streamline the process of accessing and understanding box office trends.
 
-## Project Outline/Plan
+## Project Outline and Plan
 
 ### Interface Plan
 
-Display data with a web interface, created with Flask. Our interface will present a gross profit timeseries, as well as an annual bar chart that visualizes weekly gross with each week's #1 movie. There should be a widget to change the dates shown for the data and to update the data.
+Display data with a web interface, created with Flask. Our interface will present a gross revenue timeseries, as well as an annual bar chart that visualizes weekly gross with each week's #1 movie. There should be a widget to change the dates shown for the data and to update the data.
 This bar chart will have a hyperlinked weeks where you can see a vizualization of the top movies for that week in a pie chart.  
-Window 1: Home screen with timeseries and bar chart of gross profits by week.
+Window 1: Home screen with timeseries and bar chart of gross revenue by week.
 Window 2: A pie chart of top movies, by weekly gross, for the queried week.
 Widget 1: A drop-down menu (TBD) to change the year of data shown on window 1
 Widget 2: A go button to reload/update the data shown on window 1
@@ -27,7 +27,7 @@ Widget 4: A button to show "detailed data" for a given movie, like overall gross
 ### Data Collection and Storage Plan
 
 Data will be scraped from [Box Office Mojo](https://www.boxofficemojo.com/date/) website and stored in weekly **tab-delimited** "csv" files.
-Data will preserve the format of the scraped data-- that is, we will store the data with a header and data:
+Data will preserve the format of the scraped data-- that is, we will store the data with a header and data as shown below:
 
 | Rank (This week) | LW  | Release                | Gross       | %± LW  | Theaters | Change | Average | Total Gross | Weeks | Distributor        |
 | ---------------- | --- | ---------------------- | ----------- | ------ | -------- | ------ | ------- | ----------- | ----- | ------------------ |
