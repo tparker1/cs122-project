@@ -9,7 +9,7 @@ Box Office Dashboard
 
 ## Project Description
 
-Box Office Dashboard is a Python-based web interface to obtain, analyze, and visualize box office data from Box Office Mojo. Box Office Mojo Dashboard will display historical weekly box office weekly data, such as overall gross and #1 releases. Futhermore, Box Office Dashboard will display pie charts of top movies for each week, weighted by their weekly gross.
+Box Office Dashboard (BOD) allows users to visualize trends at the box office through an interactive dashboard. BOD is a Python-based web interface to obtain, analyze, and visualize box office data from Box Office Mojo by IMDB. BOD will allow users to load in the latest and historical box office data to visuazlize temporal trends. BOD will display timeseries and bar charts for weekly box office data, such as overall gross and #1 releases. Futhermore, BOD will allow users to access detailed information by displaying pie charts of top movies for each week, weighted by their weekly gross. By combining data collection, storage, and visualization techniques, BOD aims to streamline the process of accessing and understanding box office trends.
 
 ## Project Outline/Plan
 
@@ -36,4 +36,8 @@ Data will preserve the format of the scraped data-- that is, we will store the d
 
 ### Data Analysis and Visualization Plan
 
-We will use Python's numpy package to calculate trends in the data over time and use matplotlib and/or seaborn to visualize the data as a timeseries, bar and pie charts.
+BOD will utilize matplotlib and seaborn to create standard visualizations, such as line charts for depicting the trends in box office gross over time and bar charts for comparing the performance of different movies.
+Window 1 will use a line chart and a bar graph to visualize gross trends of weekly box office data. Window 2 will use a pie chart to vizualize movies from that week, weighted by their gross for that week.
+
+<!-- Other analysis and visualization plan if we have the time:
+Comparative Analysis: BOD will visualize key metrics between different movies to facilitate a straightforward understanding of their relative performance. This will involve creating side-by-side bar charts or tables that highlight the differences in metrics such as total gross or average weekly gross between selected movies. -->
