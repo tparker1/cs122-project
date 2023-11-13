@@ -10,6 +10,8 @@ from flask import request
 # import csv module
 import csv
 
+
+
 # create a Flask object called app
 app = Flask(__name__)
 
@@ -29,6 +31,13 @@ def home():
 # add 'GET' to the methods
 # create a year function
 @app.route("/year", methods=['GET'])
+def year():
+    pass
+
+# define a route to the pie page
+# add 'GET' to the methods
+# create a pie function
+@app.route("/pie", methods=['GET'])
 def year():
     pass
 
