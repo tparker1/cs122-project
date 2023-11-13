@@ -15,14 +15,14 @@ Box Office Dashboard (BOD) allows users to visualize trends at the box office th
 
 ### Interface Plan
 
-Display data with a web interface, created with Flask. Our interface will present a gross revenue timeseries, as well as an annual bar chart that visualizes weekly gross with each week's #1 movie. There should be a widget to change the dates shown for the data and to update the data.<br>
-This bar chart will have a hyperlinked weeks where you can see a vizualization of the top movies for that week in a pie chart.  <br>
-Window 1: Home screen with timeseries and bar chart of gross revenue by week.<br>
-Window 2: A pie chart of top movies, by weekly gross, for the queried week.<br>
-Widget 1: A drop-down menu (TBD) to change the year of data shown on window 1<br>
-Widget 2: A go button to reload/update the data shown on window 1<br>
-Widget 3: A button to open "detailed data" (window 2) for a chosen week<br>
-Widget 4: A button to show "detailed data" for a given movie, like overall gross (TBD)<br>
+Display data with a web interface, created with Flask. Our interface will present a gross revenue timeseries, as well as an annual bar chart that visualizes weekly gross with each week's #1 movie. There should be a widget to change the dates shown for the data and to update the data.<br><br>
+This bar chart will have a hyperlinked weeks where you can see a vizualization of the top movies for that week in a pie chart.  <br><br>
+Window 1: Home screen with timeseries and bar chart of gross revenue by week.<br><br>
+Window 2: A pie chart of top movies, by weekly gross, for the queried week.<br><br>
+Widget 1: A drop-down menu (TBD) to change the year of data shown on window 1<br><br>
+Widget 2: A go button to reload/update the data shown on window 1<br><br>
+Widget 3: A button to open "detailed data" (window 2) for a chosen week<br><br>
+Widget 4: A button to show "detailed data" for a given movie, like overall gross (TBD)<br><br>
 
 ### Data Collection and Storage Plan
 
