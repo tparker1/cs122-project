@@ -189,6 +189,10 @@ def plot_weekly_data_by_year(df, year):
     # Use the values in df['Week'] for the xticks
     plt.xticks(df['Datetime'], df['Week'], rotation=45)
 
+    if not os.path.exists('graphs'):
+        # Create the directory if it doesn't exist
+            os.makedirs('graphs')
+
     plt.savefig(os.path.join('graphs', 'weekly_gross.png'))
 
     return 

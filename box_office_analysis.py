@@ -43,8 +43,8 @@ def update_year_list():
 
     year_list.sort(reverse=True)
 
-    end_year = year_list[0]
-
+    if len(year_list) > 0:
+        end_year = year_list[0]
 
 
 # define a route to the home page
@@ -53,10 +53,11 @@ def update_year_list():
 @app.route("/home")
 def home():
     update_year_list()
+    if len(year_list) > 0:
     # create plot for current year
-    current_year_csv_path = os.path.join(directory_path, str(end_year) + '_weekly.csv')
-    df = pd.read_csv(current_year_csv_path)
-    gd.plot_weekly_data_by_year(df, end_year)
+        current_year_csv_path = os.path.join(directory_path, str(end_year) + '_weekly.csv')
+        df = pd.read_csv(current_year_csv_path)
+        gd.plot_weekly_data_by_year(df, end_year)
 
     return render_template('box_office_home.html', years=year_list, selected_year=end_year)
 

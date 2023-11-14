@@ -10,6 +10,10 @@ def save_weekly_data_to_csv():
 
     # Scrape all weekly data from 1982 until most recent year
     while True:
+        if not os.path.exists('weekly_csv'):
+        # Create the directory if it doesn't exist
+            os.makedirs('weekly_csv')
+
         try:
             print('Getting data from year', end_year)
             df = gd.get_weekly_data_for_year(str(end_year))
