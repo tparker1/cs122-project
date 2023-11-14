@@ -5,7 +5,7 @@ import pandas as pd
 from datetime import datetime
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
-
+import os
 
 
 
@@ -189,6 +189,6 @@ def plot_weekly_data_by_year(df, year):
     # Use the values in df['Week'] for the xticks
     plt.xticks(df['Datetime'], df['Week'], rotation=45)
 
-    plt.savefig('weekly_gross.png')
+    plt.savefig(os.path.join('graphs', 'weekly_gross.png'))
 
     return 
