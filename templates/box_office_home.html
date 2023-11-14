@@ -8,20 +8,23 @@
 <body>
     <header>
         <h1>Box Office Analysis</h1>
-        <h2>Weekly Grosses</h2>
+        <h2>{{current_year}} Weekly Grosses</h2>
     </header>
 
 <p>Choose Year: </p>
 <form action="/year" method="get">
     <!--Make a select feature to choose the year-->
-    <select year="year" id="years">
-        <option value="2023">2023</option>
+    <select name="year" id="years">
+        <option value="{{selected_year}}">{{selected_year}}</option>
+        {% for year in years %}
+            <option value="{{year}}">{{year}}</option>
+        {% endfor %}
     </select>
-    <input type="submit" value="Update">
-
-
+    <input type="submit" value="Go!">
 </form>
-<div id="viewDiv"></div>
+
+<img src="weekly_gross.png" alt="{{selected_year}} weekly gross png">
+
 
 <h2>Top Movies</h2>
 <p>Pie Chart here</p>

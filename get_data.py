@@ -40,6 +40,11 @@ def get_weekly_data_for_year(year="2023"):
         appended_data.append(data_row)
 
     df = clean_pd_weekly_data(appended_data, year)
+
+    # Raise value error if there is no data for the specified year
+    if df.shape[0] == 0:
+        raise ValueError("No available data for year entered (" + year + ")")
+    
     return df
 
 
