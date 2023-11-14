@@ -13,7 +13,7 @@ def get_weekly_data_for_year(year="2023"):
     url = "https://www.boxofficemojo.com/weekly/by-year/"+ year + "/"
     req=requests.get(url)
     content=req.text
-    soup=BeautifulSoup(content)
+    soup=BeautifulSoup(content, 'lxml')
     rows=soup.findAll('tr')
 
     appended_data = []
