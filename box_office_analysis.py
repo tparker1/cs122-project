@@ -10,7 +10,8 @@ from flask import request
 # import csv module
 import csv
 
-
+# import pandas
+import pandas as pd
 
 # create a Flask object called app
 app = Flask(__name__)
