@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# CSV data
+/weekly_csv
+
 # Distribution / packaging
 .Python
 build/
