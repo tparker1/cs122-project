@@ -1,4 +1,3 @@
-import csv
 import pandas as pd
 import os
 
@@ -25,4 +24,6 @@ def save_weekly_data_to_csv():
         end_year += 1
 
     end_year -= 1
+
+
 
