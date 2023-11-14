@@ -12,6 +12,9 @@ weekly_csv/
 # generated plots
 graphs/
 
+# generated plots
+*.png
+
 # Distribution / packaging
 .Python
 build/
