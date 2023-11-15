@@ -23,11 +23,12 @@ directory_path = 'weekly_csv'
 
 year_list = []
 end_year = 0
+start_year = 0
 
 # Function to update year list
 def update_year_list():
     global year_list 
-    global end_year
+    global end_year, start_year
 
     year_list.clear()
     # Traverse through files in the directory
@@ -45,6 +46,7 @@ def update_year_list():
 
     if len(year_list) > 0:
         end_year = year_list[0]
+        start_year = year_list[-1]
 
 # define a route to the home page
 # create a home function
@@ -65,9 +67,17 @@ def home():
 # create a year function
 @app.route("/year", methods=['GET'])
 def year():
-    # Get the selected year from the query parameters 
-    selected_year = request.args.get('year')
+    global start_year, end_year
 
+    # Get the selected year from the query parameters 
+    selected_year = int(request.args.get('year', 0))
+
+    # Check if the selected year is within your range of available years
+    if selected_year > max(year_list):
+        selected_year = end_year
+    elif selected_year < min(year_list):
+        selected_year = start_year
+    
     # create plot for selected year
     current_year_csv_path = os.path.join(directory_path, str(selected_year) + '_weekly.csv')
     df = pd.read_csv(current_year_csv_path)
