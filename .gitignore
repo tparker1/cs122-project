@@ -8,11 +8,10 @@ __pycache__/
 
 # CSV data
 weekly_csv/
+*.csv
 
 # generated plots
 graphs/
-
-# generated plots
 *.png
 
 # Distribution / packaging
