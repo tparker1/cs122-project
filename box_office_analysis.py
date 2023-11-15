@@ -46,7 +46,6 @@ def update_year_list():
     if len(year_list) > 0:
         end_year = year_list[0]
 
-
 # define a route to the home page
 # create a home function
 @app.route("/")
