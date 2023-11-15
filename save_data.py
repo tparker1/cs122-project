@@ -6,7 +6,6 @@ import get_data as gd
 def save_weekly_data_to_csv():
     # Identify the years with box office data
     end_year = 1982
-    data_list = []
 
     # Scrape all weekly data from 1982 until most recent year
     while True:

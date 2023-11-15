@@ -45,6 +45,9 @@ def update_year_list():
     if len(year_list) > 0:
         end_year = year_list[0]
         start_year = year_list[-1]
+    else:
+        end_year = 0
+        start_year = 0
 
 # define a route to the home page
 # create a home function
