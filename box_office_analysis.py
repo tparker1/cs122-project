@@ -1,15 +1,13 @@
 # import the Flask class from the flask module
 from flask import Flask
 
-# import the render_template function
-from flask import render_template
+# import the render_template, redirect, and url_for function 
+from flask import render_template, redirect, url_for
 
-# import the request function
+# import the request variable
 from flask import request
 
-# import pandas
 import pandas as pd
-
 import os
 
 import get_data as gd
@@ -101,7 +99,8 @@ def update_data():
     
     print("Data Updated!")
 
-    return render_template('box_office_home.html', years=year_list, selected_year=end_year)
+    # Redirect back to homepage after finishing updating
+    return redirect(url_for('home'))
 
 # add a main method to run the app
 # as a typical Python script

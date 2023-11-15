@@ -59,6 +59,11 @@
             background-color: #333;
             color: #fff;
         }
+
+        /* Position the Update Data button to the far right on the same line */
+        .update-data-button {
+            float: right;
+        }
     </style>
 </head>
 <body>
@@ -68,7 +73,6 @@
     </header>
 
     <section>
-        <p>Choose Year: </p>
         <form action="/year" method="get">
             <select name="year" id="years">
                 <option value="{{selected_year}}">{{selected_year}}</option>
@@ -89,6 +93,11 @@
             <input type="hidden" name="year" value="{{selected_year + 1}}">
             <input type="submit" value="Next >">
         </form>
+
+        <!-- Update Data button -->
+        <form action="/update_data" method="post" class="update-data-button">
+            <input type="submit" value="Update Data">
+        </form>
     </section>
 
     <!-- Display weekly gross data -->
@@ -97,12 +106,6 @@
     <section>
         <h2>Top Movies</h2>
         <p>Pie Chart here</p>
-    </section>
-
-    <section>
-        <form action="/update_data" method="post">
-            <input type="submit" value="Update Data">
-        </form>
     </section>
 
     <footer>
