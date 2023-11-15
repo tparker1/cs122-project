@@ -1,39 +1,112 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Box Office Analysis Dashboard</title>
-    <meta name="description" content="A dashboard for Box Office Analysis.">
     <meta charset="utf-8">
-    
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Box Office Analysis Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
 
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        h2 {
+            margin-top: 0.5em;
+        }
+
+        section {
+            margin: 1em;
+        }
+
+        form {
+            display: inline-block;
+            margin-right: 1em;
+        }
+
+        select, input[type="submit"] {
+            padding: 0.5em;
+            font-size: 1em;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1em 0;
+        }
+
+        h2, p {
+            margin-bottom: 0.5em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1em;
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
 <body>
     <header>
         <h1>Box Office Analysis</h1>
-        <h2>{{selected_year}} Weekly Grosses</h2>
+        <h2>{{selected_year}} Grosses</h2>
     </header>
 
-<p>Choose Year: </p>
-<form action="/year" method="get">
-    <!--Make a select feature to choose the year-->
-    <select name="year" id="years">
-        <option value="{{selected_year}}">{{selected_year}}</option>
-        {% for year in years %}
-            <option value="{{year}}">{{year}}</option>
-        {% endfor %}
-    </select>
-    <input type="submit" value="Go!">
-</form>
+    <section>
+        <p>Choose Year: </p>
+        <form action="/year" method="get">
+            <select name="year" id="years">
+                <option value="{{selected_year}}">{{selected_year}}</option>
+                {% for year in years %}
+                    <option value="{{year}}">{{year}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Go!">
+        </form>
 
-<img src="static/weekly_gross.png" alt="{{selected_year}} weekly gross png">
+        <!-- Navigation buttons for Previous and Next Year-->
+        <form action="/year" method="get">
+            <input type="hidden" name="year" value="{{selected_year - 1}}">
+            <input type="submit" value="< Prev">
+        </form>
 
+        <form action="/year" method="get">
+            <input type="hidden" name="year" value="{{selected_year + 1}}">
+            <input type="submit" value="Next >">
+        </form>
+    </section>
 
-<h2>Top Movies</h2>
-<p>Pie Chart here</p>
+    <!-- Display weekly gross data -->
+    <img src='static/weekly_gross.png' alt="{{selected_year}} weekly gross png">
 
-<form action="/update_data" method="post">
-    <input type="submit" value="Update Data">
-</form>
+    <section>
+        <h2>Top Movies</h2>
+        <p>Pie Chart here</p>
+    </section>
+
+    <section>
+        <form action="/update_data" method="post">
+            <input type="submit" value="Update Data">
+        </form>
+    </section>
+
+    <footer>
+        &copy; 2023 Box Office Analysis
+    </footer>
 </body>
-
-
 </html>
