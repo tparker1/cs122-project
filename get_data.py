@@ -287,6 +287,14 @@ def get_top_movies_df_for_year(year = '2022'):
     
     # Convert the 'Gross' column to an integer
     df['int_gross'] = df['Gross'].str.replace('$', '').str.replace(',', '').astype(int)
+
+    def format_gross(value):
+        if value >= 1000000000:
+            return '${:.1f} B'.format(value / 1000000000)
+        else:
+            return '${:.1f} MM'.format(value / 1000000)
+
+    df['readable_gross'] = df['int_gross'].apply(format_gross)
     
     # Return the DataFrame
     return df
