@@ -1,11 +1,12 @@
 # import the requests and BeautifulSoup modules
 import requests
 from bs4 import BeautifulSoup
+import os
 import pandas as pd
 from datetime import datetime
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
-import os
+import matplotlib.patheffects as pe
 
 
 
@@ -194,5 +195,54 @@ def plot_weekly_data_by_year(df, year):
             os.makedirs('static')
 
     plt.savefig(os.path.join('static', 'weekly_gross.png'))
+
+    return 
+
+# given a year, open weekly_csv/YYYY_weekly.csv and return a dataframe
+def get_weekly_data_for_year(year):
+    filename = "weekly_csv/" + year + "_weekly.csv"
+    df = pd.read_csv(filename)
+    return df
+
+def get_top_movies_for_year_pie_chart(year='2023'):
+    '''Saves a pie chart showing the top 8 movies for a given year, based on the number of weeks at #1
+    param: year (str) - the year to get the top movies for. default is 2023
+    return: None
+    saves a png file to static/top_8_movies_pie.png'''
+
+    df = get_weekly_data_for_year(year)
+    top_8_movies = df['Number1Release'].value_counts().head(8)
+
+    palette = ['#003f5c', '#2f4b7c', '#665191', '#a05195', '#d45087', '#f95d6a', '#ff7c43', '#ffa600']
+    palette.reverse()
+
+    labels = top_8_movies.index
+    data = top_8_movies
+
+    plt.figure(figsize=(20,20))
+
+    fig1, ax1 = plt.subplots()
+
+    # Plot the pie chart
+    ax1.pie(data, colors=palette, autopct=lambda p: '{:.0f}'.format(p * sum(data) / 100), pctdistance=0.7, startangle=90, 
+            textprops={'fontsize': 16, 'color': 'white', 'alpha': 1, 'path_effects': [pe.withStroke(linewidth=2, foreground="black", alpha = 0.85)]}, 
+            shadow=False)
+
+    # Draw circle
+    centre_circle = plt.Circle((0,0),0.4,fc='white')
+    fig = plt.gcf()
+    fig.gca().add_artist(centre_circle)
+
+    # Equal aspect ratio ensures that pie is drawn as a circle
+    ax1.axis('equal')  
+
+    # Add title and subtitle
+    plt.suptitle(year + ' Top Movies', fontsize=16, fontweight='bold', y=0.95)
+    plt.title('Weeks at #1', fontsize=12)
+
+    plt.tight_layout()
+    plt.legend(labels, loc='upper left', bbox_to_anchor=(0.85, 1.025), shadow=True, ncol=1)
+    plt.savefig(os.path.join('static','top_8_movies_pie.png'), dpi=600, bbox_inches='tight')
+    plt.close()
 
     return 
