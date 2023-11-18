@@ -246,3 +246,47 @@ def get_top_movies_for_year_pie_chart(year='2023'):
     plt.close()
 
     return 
+
+def get_top_movies_df_for_year(year = '2022'):
+    url = 'https://www.boxofficemojo.com/year/' + str(year) + '/'
+
+    # Send a GET request to the URL
+    response = requests.get(url)
+    
+    # Parse the HTML response
+    soup = BeautifulSoup(response.text, 'html.parser')
+    
+    # Find the table rows
+    table_rows = soup.select('#table div table tr')[1:10]
+    
+    # Initialize an empty list to store the data
+    data = []
+    
+    # For each row, extract the data and append it to the list
+    for row in table_rows:
+        rank = row.select('td')[0].text
+        release = row.select('td')[1].text
+        gross = row.select('td')[5].text
+        theaters = row.select('td')[6].text
+        total_gross = row.select('td')[7].text
+        release_date = row.select('td')[8].text
+        distributor = row.select('td')[9].text
+
+        data.append({
+            'Rank': rank,
+            'Release': release,
+            'Gross': gross,
+            'Theaters': theaters,
+            'Total Gross': total_gross,
+            'Release Date': release_date,
+            'Distributor': distributor
+        })
+    
+    # Convert the list of dictionaries to a DataFrame
+    df = pd.DataFrame(data)
+    
+    # Convert the 'Gross' column to an integer
+    df['int_gross'] = df['Gross'].str.replace('$', '').str.replace(',', '').astype(int)
+    
+    # Return the DataFrame
+    return df
