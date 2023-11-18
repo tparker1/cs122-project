@@ -251,7 +251,7 @@ def get_top_movies_df_for_year(year = '2022'):
     return df
 
 
-def get_top_movies_for_year_pie_chart(df):
+def get_top_movies_for_year_pie_chart(df, year):
     '''Saves a pie chart showing the top 8 movies for a given year, based on gross revenue
     param: df (DataFrame) - the DataFrame to get the top movies from
     return: None
@@ -305,7 +305,9 @@ def get_top_movies_for_year_pie_chart(df):
 
     # Center the title over the entire image
     plt.figtext(0.8, 1.05, 'Top Movies by Gross Revenue', ha='center', va='center', fontsize=16, fontweight='bold')
+    # plt.figtext(0.8, 1.05, 'Top Movies for {}'.format(year), ha='center', va='center', fontsize=16, fontweight='bold')
     plt.figtext(0.8, 1.0, r'Gross Revenue $\it{in\ Millions}$', ha='center', va='center', fontsize=12)
+    # plt.figtext(0.8, 1.0, r'{} $\it{{In\ Millions}}$', ha='center', va='center', fontsize=12)
 
     # Move the legend up
     plt.legend(legend_labels, loc='upper left', bbox_to_anchor=(1, 1), shadow=True, ncol=1)
@@ -316,8 +318,8 @@ def get_top_movies_for_year_pie_chart(df):
 
     return
 
-def run_get_pie_plot(year):
+def run_get_pie_plot(year=2023):
     year = str(year)
     df = get_top_movies_df_for_year(year)
-    get_top_movies_for_year_pie_chart(df)
+    get_top_movies_for_year_pie_chart(df, year)
     return
