@@ -317,6 +317,7 @@ def get_top_movies_for_year_pie_chart(df):
     return
 
 def run_get_pie_plot(year):
+    year = str(year)
     df = get_top_movies_df_for_year(year)
     get_top_movies_for_year_pie_chart(df)
     return
