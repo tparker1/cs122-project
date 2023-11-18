@@ -365,147 +365,6 @@ def get_top_worldwide_movies_df(year = '2023'):
 
     return df
 
-def get_top_worldwide_pie_chart(df, year):
-    '''Saves a pie chart showing the top 8 movies for a given year, based on gross revenue
-    param: df (DataFrame) - the DataFrame to get the top movies from
-    return: None
-    saves a png file to static/top_8_movies_pie.png'''
-
-    # Sort the DataFrame by the 'int_gross' column in descending order and select the top 8 movies
-    top_8_movies = df.sort_values('int_worldwide', ascending=False).head(8)
-
-    palette = ['#003f5c', '#2f4b7c', '#665191', '#a05195', '#d45087', '#f95d6a', '#ff7c43', '#ffa600']
-    palette.reverse()
-
-    # Use the 'int_gross' column for the pie chart data
-    data = top_8_movies['int_worldwide']
-    
-    # Use the 'readable_gross' column for the labels
-    labels = top_8_movies['readable_worldwide']
-
-    plt.figure(figsize=(20,20))
-
-    fig1, ax1 = plt.subplots()
-
-    plt.text(0,0,year, ha='center', va='center', fontsize=20, fontweight='bold')
-    
-    # Plot the pie chart without percentages
-    wedges, _ = ax1.pie(data, colors=palette, startangle=90, shadow=False)
-
-    # Calculate the angles at which to place the labels
-    bbox_props = dict(boxstyle="square,pad=0.3", fc="w", ec="k", lw=0.72)
-    kw = dict(arrowprops=dict(arrowstyle="-"),
-              bbox=bbox_props, zorder=0, va="center")
-
-    for i, p in enumerate(wedges):
-        ang = (p.theta2 - p.theta1)/2. + p.theta1
-        y = np.sin(np.deg2rad(ang))
-        x = np.cos(np.deg2rad(ang))
-        horizontalalignment = {-1: "right", 1: "left"}[int(np.sign(x))]
-        connectionstyle = "angle,angleA=0,angleB={}".format(ang)
-        kw["arrowprops"].update({"connectionstyle": connectionstyle})
-        ax1.annotate(labels[i], xy=(x, y), xytext=(1.1*np.sign(x), 1.1*y),
-                    horizontalalignment=horizontalalignment, **kw)
-
-    # Draw circle
-    centre_circle = plt.Circle((0,0),0.4,fc='white')
-    fig = plt.gcf()
-    fig.gca().add_artist(centre_circle)
-
-
-    # Equal aspect ratio ensures that pie is drawn as a circle
-    ax1.axis('equal')  
-
-    # Use the 'Release' column for the legend
-    legend_labels = top_8_movies['Release']
-
-    # Center the title over the entire image
-    plt.figtext(0.5, 1.4, 'Global Top Movies by Gross Revenue', ha='center', va='center', fontsize=16, fontweight='bold')
-    # plt.figtext(0.8, 1.05, 'Top Movies for {}'.format(year), ha='center', va='center', fontsize=16, fontweight='bold')
-    plt.figtext(0.5, 1.35, r'Gross Revenue $\it{in\ Millions}$', ha='center', va='center', fontsize=12)
-    # plt.figtext(0.8, 1.0, r'{} $\it{{In\ Millions}}$', ha='center', va='center', fontsize=12)
-
-    # Move the legend up
-    plt.legend(legend_labels, loc='lower center', bbox_to_anchor=(.5, -0.6), shadow=True, ncol=1)
-    plt.legend(legend_labels, loc='lower center', bbox_to_anchor=(.5, 1.05), shadow=True, ncol=1)
-    # plt.tight_layout()
-    # plt.legend(legend_labels, loc='upper left', bbox_to_anchor=(0.85, 1.025), shadow=True, ncol=1)
-    plt.savefig(os.path.join('static','top_8_worldwide_pie.png'), dpi=600, bbox_inches='tight')
-    plt.close()
-
-    return
-
-def get_top_domestic_pie_chart(df, year):
-    '''Saves a pie chart showing the top 8 movies for a given year, based on gross revenue
-    param: df (DataFrame) - the DataFrame to get the top movies from
-    return: None
-    saves a png file to static/top_8_movies_pie.png'''
-
-    # Sort the DataFrame by the 'int_gross' column in descending order and select the top 8 movies
-    # top_8_movies = df.sort_values('int_domestic', ascending=False).head(8)
-    # Sort the DataFrame by the 'int_gross' column in descending order and select the top 8 movies
-    top_8_movies = df.sort_values('int_domestic', ascending=False).head(8).reset_index(drop=True)
-
-    palette = ['#003f5c', '#2f4b7c', '#665191', '#a05195', '#d45087', '#f95d6a', '#ff7c43', '#ffa600']
-    palette.reverse()
-
-    # Use the 'int_gross' column for the pie chart data
-    data = top_8_movies['int_domestic']
-    
-    # Use the 'readable_gross' column for the labels
-    labels = top_8_movies['readable_domestic']
-
-    plt.figure(figsize=(20,20))
-
-    fig1, ax1 = plt.subplots()
-
-    plt.text(0,0,year, ha='center', va='center', fontsize=20, fontweight='bold')
-    
-    # Plot the pie chart without percentages
-    wedges, _ = ax1.pie(data, colors=palette, startangle=90, shadow=False)
-
-    # Calculate the angles at which to place the labels
-    bbox_props = dict(boxstyle="square,pad=0.3", fc="w", ec="k", lw=0.72)
-    kw = dict(arrowprops=dict(arrowstyle="-"),
-              bbox=bbox_props, zorder=0, va="center")
-
-    for i, p in enumerate(wedges):
-        ang = (p.theta2 - p.theta1)/2. + p.theta1
-        y = np.sin(np.deg2rad(ang))
-        x = np.cos(np.deg2rad(ang))
-        horizontalalignment = {-1: "right", 1: "left"}[int(np.sign(x))]
-        connectionstyle = "angle,angleA=0,angleB={}".format(ang)
-        kw["arrowprops"].update({"connectionstyle": connectionstyle})
-        ax1.annotate(labels[i], xy=(x, y), xytext=(1.1*np.sign(x), 1.1*y),
-                    horizontalalignment=horizontalalignment, **kw)
-
-    # Draw circle
-    centre_circle = plt.Circle((0,0),0.4,fc='white')
-    fig = plt.gcf()
-    fig.gca().add_artist(centre_circle)
-
-
-    # Equal aspect ratio ensures that pie is drawn as a circle
-    ax1.axis('equal')  
-
-    # Use the 'Release' column for the legend
-    legend_labels = top_8_movies['Release']
-
-    # Center the title over the entire image
-    plt.figtext(0.5, 1.4, 'Domestic Top Movies by Gross Revenue', ha='center', va='center', fontsize=16, fontweight='bold')
-    # plt.figtext(0.8, 1.05, 'Top Movies for {}'.format(year), ha='center', va='center', fontsize=16, fontweight='bold')
-    plt.figtext(0.5, 1.35, r'Gross Revenue $\it{in\ Millions}$', ha='center', va='center', fontsize=12)
-    # plt.figtext(0.8, 1.0, r'{} $\it{{In\ Millions}}$', ha='center', va='center', fontsize=12)
-
-    # Move the legend up
-    plt.legend(legend_labels, loc='lower center', bbox_to_anchor=(.5, -0.6), shadow=True, ncol=1)
-    plt.legend(legend_labels, loc='lower center', bbox_to_anchor=(.5, 1.05), shadow=True, ncol=1)
-    # plt.tight_layout()
-    # plt.legend(legend_labels, loc='upper left', bbox_to_anchor=(0.85, 1.025), shadow=True, ncol=1)
-    plt.savefig(os.path.join('static','top_8_domestic_pie.png'), dpi=600, bbox_inches='tight')
-    plt.close()
-
-    return
 
 def get_top_movies_pie_chart(df, year, scope):
     '''Saves a pie chart showing the top 8 movies for a given year, based on gross revenue
@@ -565,10 +424,8 @@ def get_top_movies_pie_chart(df, year, scope):
     legend_labels = top_8_movies['Release']
 
     # Center the title over the entire image
-    plt.figtext(0.5, 1.4, 'Domestic Top Movies by Gross Revenue', ha='center', va='center', fontsize=16, fontweight='bold')
-    # plt.figtext(0.8, 1.05, 'Top Movies for {}'.format(year), ha='center', va='center', fontsize=16, fontweight='bold')
+    plt.figtext(0.5, 1.4, f'{scope.capitalize()} Top Movies by Gross Revenue', ha='center', va='center', fontsize=16, fontweight='bold')
     plt.figtext(0.5, 1.35, r'Gross Revenue $\it{in\ Millions}$', ha='center', va='center', fontsize=12)
-    # plt.figtext(0.8, 1.0, r'{} $\it{{In\ Millions}}$', ha='center', va='center', fontsize=12)
 
     # Move the legend up
     plt.legend(legend_labels, loc='lower center', bbox_to_anchor=(.5, -0.6), shadow=True, ncol=1)
@@ -582,10 +439,8 @@ def get_top_movies_pie_chart(df, year, scope):
 
 def run_get_pie_plot(year=2023):
     year = str(year)
+    scopes = ['domestic', 'worldwide']
     df = get_top_worldwide_movies_df(year)
-    get_top_movies_pie_chart(df, year, "domestic")
-    get_top_movies_pie_chart(df, year, "worldwide")
-
-    # get_top_worldwide_pie_chart(df, year)
-    # get_top_domestic_pie_chart(df, year)
+    get_top_movies_pie_chart(df, year, scopes[0])
+    get_top_movies_pie_chart(df, year, scopes[1])
     return 
