@@ -203,10 +203,10 @@ def plot_weekly_data_by_year(df, year):
     return 
 
 # given a year, open weekly_csv/YYYY_weekly.csv and return a dataframe
-def get_weekly_data_for_year(year):
-    filename = "weekly_csv/" + year + "_weekly.csv"
-    df = pd.read_csv(filename)
-    return df
+# def get_weekly_data_for_year(year):
+#     filename = "weekly_csv/" + year + "_weekly.csv"
+#     df = pd.read_csv(filename)
+#     return df
 
 
 
