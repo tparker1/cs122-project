@@ -104,8 +104,12 @@
     <img src='static/weekly_gross.png' alt="{{selected_year}} weekly gross png">
 
     <section>
-        <h2>Top Movies</h2>
-        <p>Pie Chart here</p>
+        <h2>Annual Top Movies</h2>
+        <!-- Entry box to go to "pie" page -->
+        <form action="/pie" method="get">
+            <input type="text" name="year" placeholder="Enter Year">
+            <input type="submit" value="View">
+        </form>
     </section>
 
     <footer>
