@@ -56,6 +56,7 @@ def update_year_list():
 @app.route("/")
 @app.route("/home")
 def home():
+    global directory_path
     update_year_list()
     if len(year_list) > 0:
     # create plot for current year
@@ -70,7 +71,7 @@ def home():
 # create a year function
 @app.route("/year", methods=['GET'])
 def year():
-    global start_year, end_year
+    global start_year, end_year, directory_path
 
     # Get the selected year from the query parameters 
     selected_year = int(request.args.get('year', 0))
@@ -93,7 +94,23 @@ def year():
 # create a pie function
 @app.route("/pie", methods=['GET'])
 def pie():
-    pass
+    global start_year, end_year, directory_path
+
+    # Get the selected year from the query parameters 
+    selected_year = int(request.args.get('year', 0))
+
+    # Check if the selected year is within your range of available years
+    if selected_year > max(year_list):
+        selected_year = end_year
+    elif selected_year < min(year_list):
+        selected_year = start_year
+
+    # create pie chart for selected year
+    current_year_csv_path = os.path.join(directory_path, str(selected_year) + '_weekly.csv')
+    df = pd.read_csv(current_year_csv_path)
+    gd.get_top_movies_pie_chart(df, selected_year, 'domestic')
+
+    return render_template('pie_chart.html', years=year_list, selected_year=selected_year)
 
 # define a route to update and download data from BoxOfficeMojo through a button
 @app.route('/update_data', methods=['POST'])
