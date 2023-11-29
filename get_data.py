@@ -216,8 +216,6 @@ def plot_weekly_data_by_year(df, year):
 
     return 
 
-
-
 def get_top_worldwide_movies_df(year = '2023'):
     
     url = 'https://www.boxofficemojo.com/year/world/'+ str(year) + '/'
@@ -229,7 +227,7 @@ def get_top_worldwide_movies_df(year = '2023'):
     soup = BeautifulSoup(response.text, 'html.parser')
     
     # Find the table rows
-    table_rows = soup.select('#table div table tr')[1:10]
+    table_rows = soup.select('#table div table tr')[1:]
     
     # Initialize an empty list to store the data
     data = []
@@ -258,8 +256,10 @@ def get_top_worldwide_movies_df(year = '2023'):
     df = pd.DataFrame(data)
     
     # Convert the 'Gross' column to an integer
+    df['worldwide'] = df['worldwide'].str.replace('-', '0')
     df['int_worldwide'] = df['worldwide'].str.replace('$', '').str.replace(',', '').astype(np.int64)
     df['readable_worldwide'] = df['int_worldwide'].apply(lambda x: '${:d}'.format(np.int64(x / 1000000)))
+    df['domestic'] = df['domestic'].str.replace('-', '0')
     df['int_domestic'] = df['domestic'].str.replace('$', '').str.replace(',', '').astype(np.int64)
     df['readable_domestic'] = df['int_domestic'].apply(lambda x: '${:d}'.format(np.int64(x / 1000000)))
 
