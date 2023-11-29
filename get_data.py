@@ -386,7 +386,8 @@ def get_top_movies_pie_chart(df, year, scope):
     legend_labels = top_8_movies['Release']
 
     # Center the title over the entire image
-    plt.figtext(0.5, 1.4, f'{scope.capitalize()} Top Movies by Gross Revenue', ha='center', va='center', fontsize=16, fontweight='bold')
+    # plt.figtext(0.5, 1.4, f'{scope.capitalize()} Top Movies by Gross Revenue', ha='center', va='center', fontsize=16, fontweight='bold')
+    plt.figtext(0.5, 1.4, f'{scope.capitalize()}', ha='center', va='center', fontsize=16, fontweight='bold')
     plt.figtext(0.5, 1.35, r'Gross Revenue $\it{in\ Millions}$', ha='center', va='center', fontsize=12)
 
     # Move the legend up
