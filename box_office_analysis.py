@@ -12,6 +12,8 @@ import os
 
 import get_data as gd
 import save_data as sd
+import matplotlib
+matplotlib.use('qtagg')
 
 # create a Flask object called app
 app = Flask(__name__)
