@@ -322,9 +322,9 @@ def get_top_worldwide_movies_df(year = '2023'):
     
     # Convert the 'Gross' column to an integer
     df['int_worldwide'] = df['worldwide'].str.replace('$', '').str.replace(',', '').astype(np.int64)
-    df['readable_worldwide'] = df['int_worldwide'].apply(lambda x: '${:d}'.format(int(x / 1000000)))
+    df['readable_worldwide'] = df['int_worldwide'].apply(lambda x: '${:d}'.format(np.int64(x / 1000000)))
     df['int_domestic'] = df['domestic'].str.replace('$', '').str.replace(',', '').astype(np.int64)
-    df['readable_domestic'] = df['int_domestic'].apply(lambda x: '${:d}'.format(int(x / 1000000)))
+    df['readable_domestic'] = df['int_domestic'].apply(lambda x: '${:d}'.format(np.int64(x / 1000000)))
 
     return df
 
@@ -395,7 +395,8 @@ def get_top_movies_pie_chart(df, year, scope):
     plt.legend(legend_labels, loc='lower center', bbox_to_anchor=(.5, 1.05), shadow=True, ncol=1)
 
     # Save the image with an appropriate filename
-    plt.savefig(os.path.join('static',f'top_8_{scope}_pie.png'), dpi=600, bbox_inches='tight')
+    # plt.savefig(os.path.join('static',f'top_8_{scope}_pie.png'), dpi=600, bbox_inches='tight')
+    plt.savefig(os.path.join('static',f'top_8_{scope}_pie.png'), dpi=600, bbox_inches='tight', transparent=True)
     plt.close()
 
     return
