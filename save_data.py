@@ -19,7 +19,7 @@ def save_weekly_data_to_csv():
         # break loop when data is not available for this year
         except ValueError:
             break
-        
+
         csv_filename = str(end_year) + '_weekly.csv'
         df.to_csv(os.path.join('weekly_csv', csv_filename), index=True)
         # data_list.append(df)
