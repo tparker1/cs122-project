@@ -55,9 +55,6 @@ def get_weekly_data_for_year(year="2023"):
     return df
 
 
-
-
-
 def get_daily_data_for_year(year="2023"):
     # Path to the daily box office data, per year
     url = "https://www.boxofficemojo.com/daily/"+ year+ "/?view=year"
@@ -110,7 +107,6 @@ def convert_to_datetime(date_str, year_str):
     datetime_obj = datetime.strptime(combined_str, '%b %d %Y')
 
     return datetime_obj
-
 
 
 
@@ -205,24 +201,24 @@ def plot_daily_data_by_year(df, year):
 #     return 
 
 def plot_weekly_data_by_year(df, year):
-    palette = ['#003f5c', '#2f4b7c', '#665191', '#a05195', '#d45087', '#f95d6a', '#ff7c43', '#ffa600']
+    palette = ['#003f5c', '#2f4b7c', '#665191', '#a05195', '#d45087', '#f95d6a', '#ff7c43', '#ffa600', '#001f2e']
     # palette.reverse()
 
     plt.figure(figsize=(20,10))
-    plt.plot(df['Datetime'], df['OverallGross'], color=palette[0], linewidth=4, alpha=0.85)
+    plt.bar(df['Datetime'], df['OverallGross'], color=palette[1], edgecolor=palette[0], linewidth=2.5, alpha=0.9, width=1)  # Add edgecolor here
     
     # Add y parameter for spacing and update the title
-    plt.title('Weekly Overall Gross for {}'.format(str(year)), fontsize=36, fontweight='bold', y=1.05)
+    plt.title('Weekly Overall Gross', fontsize=36, fontweight='bold', y=1.05, color=palette[-1])
     
     # Add labelpad parameter for spacing and update the y label
-    plt.xlabel('Week', fontsize=22, labelpad=20)
-    plt.ylabel('Gross\n$_{(in\, \$MM)}$', fontsize=22, labelpad=20)
+    plt.xlabel('Week', fontsize=22, labelpad=20, color=palette[-1])
+    plt.ylabel('Gross\n$_{(in\, \$MM)}$', fontsize=22, labelpad=20, color=palette[-1])
 
     # Change the y-axis formatter to display values in millions
     plt.gca().get_yaxis().set_major_formatter(ticker.FuncFormatter(lambda x, p: format(int(x/1000000), ',')))
 
     # Set every tick and label
-    plt.xticks(df['Datetime'], df['Week'], rotation=0, fontsize=14)
+    plt.xticks(df['Datetime'], df['Week'], rotation=0, fontsize=14, color=palette[-1])
 
     plt.ylim(0, df['OverallGross'].max() * 1.1)
     
@@ -231,7 +227,7 @@ def plot_weekly_data_by_year(df, year):
         label.set_visible(False)
 
     yticks = plt.yticks()[0]
-    plt.yticks(yticks[:], fontsize=14)
+    plt.yticks(yticks[:], fontsize=14, color=palette[-1])
 
     if not os.path.exists('static'):
         # Create the directory if it doesn't exist
@@ -240,6 +236,43 @@ def plot_weekly_data_by_year(df, year):
     plt.savefig(os.path.join('static', 'weekly_gross.png'))
 
     return 
+
+# def plot_weekly_data_by_year(df, year):
+#     palette = ['#003f5c', '#2f4b7c', '#665191', '#a05195', '#d45087', '#f95d6a', '#ff7c43', '#ffa600']
+#     # palette.reverse()
+
+#     plt.figure(figsize=(20,10))
+#     plt.plot(df['Datetime'], df['OverallGross'], color=palette[0], linewidth=4, alpha=0.85)
+    
+#     # Add y parameter for spacing and update the title
+#     plt.title('Weekly Overall Gross for {}'.format(str(year)), fontsize=36, fontweight='bold', y=1.05)
+    
+#     # Add labelpad parameter for spacing and update the y label
+#     plt.xlabel('Week', fontsize=22, labelpad=20)
+#     plt.ylabel('Gross\n$_{(in\, \$MM)}$', fontsize=22, labelpad=20)
+
+#     # Change the y-axis formatter to display values in millions
+#     plt.gca().get_yaxis().set_major_formatter(ticker.FuncFormatter(lambda x, p: format(int(x/1000000), ',')))
+
+#     # Set every tick and label
+#     plt.xticks(df['Datetime'], df['Week'], rotation=0, fontsize=14)
+
+#     plt.ylim(0, df['OverallGross'].max() * 1.1)
+    
+#     # Hide some of them
+#     for label in plt.gca().xaxis.get_ticklabels()[::2]:
+#         label.set_visible(False)
+
+#     yticks = plt.yticks()[0]
+#     plt.yticks(yticks[:], fontsize=14)
+
+#     if not os.path.exists('static'):
+#         # Create the directory if it doesn't exist
+#         os.makedirs('static')
+
+#     plt.savefig(os.path.join('static', 'weekly_gross.png'))
+
+#     return 
 # given a year, open weekly_csv/YYYY_weekly.csv and return a dataframe
 # def get_weekly_data_for_year(year):
 #     filename = "weekly_csv/" + year + "_weekly.csv"

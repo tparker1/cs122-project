@@ -62,6 +62,9 @@ def home():
     # create plot for current year
         current_year_csv_path = os.path.join(directory_path, str(end_year) + '_weekly.csv')
         df = pd.read_csv(current_year_csv_path)
+        # reverse and reset the order of the dataframe
+        df = df.iloc[::-1]
+        df = df.reset_index(drop=True)
         gd.plot_weekly_data_by_year(df, end_year)
 
     return render_template('box_office_home.html', years=year_list, selected_year=end_year)
@@ -109,7 +112,9 @@ def pie():
         selected_year = start_year
 
     # create pie chart for selected year
-    gd.run_get_pie_plot(selected_year)
+    # current_year_csv_path = os.path.join(directory_path, str(selected_year) + '_weekly.csv')
+    # df = pd.read_csv(current_year_csv_path)
+    gd.get_top_movies_pie_chart(df, selected_year, 'domestic')
 
     return render_template('pie_chart.html', years=year_list, selected_year=selected_year)
 
