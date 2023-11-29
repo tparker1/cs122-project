@@ -321,10 +321,10 @@ def get_top_worldwide_movies_df(year = '2023'):
     df = pd.DataFrame(data)
     
     # Convert the 'Gross' column to an integer
-    df['int_worldwide'] = df['worldwide'].str.replace('$', '').str.replace(',', '').astype(int)
-    df['readable_worldwide'] = df['int_worldwide'].apply(lambda x: '${:d}'.format(int(x / 1000000)))
-    df['int_domestic'] = df['domestic'].str.replace('$', '').str.replace(',', '').astype(int)
-    df['readable_domestic'] = df['int_domestic'].apply(lambda x: '${:d}'.format(int(x / 1000000)))
+    df['int_worldwide'] = df['worldwide'].str.replace('$', '').str.replace(',', '').astype(np.int64)
+    df['readable_worldwide'] = df['int_worldwide'].apply(lambda x: '${:d}'.format(np.int64(x / 1000000)))
+    df['int_domestic'] = df['domestic'].str.replace('$', '').str.replace(',', '').astype(np.int64)
+    df['readable_domestic'] = df['int_domestic'].apply(lambda x: '${:d}'.format(np.int64(x / 1000000)))
 
     return df
 
