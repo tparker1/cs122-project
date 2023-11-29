@@ -179,27 +179,6 @@ def plot_daily_data_by_year(df, year):
 
     return 
 
-# def plot_weekly_data_by_year(df, year):
-#     plt.figure(figsize=(20,10))
-#     plt.plot(df['Datetime'], df['OverallGross'])
-#     plt.title('Weekly Overall Gross for ' + str(year))
-#     plt.xlabel('Week Number')
-#     plt.ylabel('Gross')
-
-#     # Change the y-axis formatter to display full values
-#     plt.gca().get_yaxis().set_major_formatter(ticker.FuncFormatter(lambda x, p: format(int(x), ',')))
-
-#     # Use the values in df['Week'] for the xticks
-#     plt.xticks(df['Datetime'], df['Week'], rotation=45)
-
-#     if not os.path.exists('static'):
-#         # Create the directory if it doesn't exist
-#             os.makedirs('static')
-
-#     plt.savefig(os.path.join('static', 'weekly_gross.png'))
-
-#     return 
-
 def plot_weekly_data_by_year(df, year):
     palette = ['#003f5c', '#2f4b7c', '#665191', '#a05195', '#d45087', '#f95d6a', '#ff7c43', '#ffa600', '#001f2e']
     # palette.reverse()
@@ -236,48 +215,6 @@ def plot_weekly_data_by_year(df, year):
     plt.savefig(os.path.join('static', 'weekly_gross.png'))
 
     return 
-
-# def plot_weekly_data_by_year(df, year):
-#     palette = ['#003f5c', '#2f4b7c', '#665191', '#a05195', '#d45087', '#f95d6a', '#ff7c43', '#ffa600']
-#     # palette.reverse()
-
-#     plt.figure(figsize=(20,10))
-#     plt.plot(df['Datetime'], df['OverallGross'], color=palette[0], linewidth=4, alpha=0.85)
-    
-#     # Add y parameter for spacing and update the title
-#     plt.title('Weekly Overall Gross for {}'.format(str(year)), fontsize=36, fontweight='bold', y=1.05)
-    
-#     # Add labelpad parameter for spacing and update the y label
-#     plt.xlabel('Week', fontsize=22, labelpad=20)
-#     plt.ylabel('Gross\n$_{(in\, \$MM)}$', fontsize=22, labelpad=20)
-
-#     # Change the y-axis formatter to display values in millions
-#     plt.gca().get_yaxis().set_major_formatter(ticker.FuncFormatter(lambda x, p: format(int(x/1000000), ',')))
-
-#     # Set every tick and label
-#     plt.xticks(df['Datetime'], df['Week'], rotation=0, fontsize=14)
-
-#     plt.ylim(0, df['OverallGross'].max() * 1.1)
-    
-#     # Hide some of them
-#     for label in plt.gca().xaxis.get_ticklabels()[::2]:
-#         label.set_visible(False)
-
-#     yticks = plt.yticks()[0]
-#     plt.yticks(yticks[:], fontsize=14)
-
-#     if not os.path.exists('static'):
-#         # Create the directory if it doesn't exist
-#         os.makedirs('static')
-
-#     plt.savefig(os.path.join('static', 'weekly_gross.png'))
-
-#     return 
-# given a year, open weekly_csv/YYYY_weekly.csv and return a dataframe
-# def get_weekly_data_for_year(year):
-#     filename = "weekly_csv/" + year + "_weekly.csv"
-#     df = pd.read_csv(filename)
-#     return df
 
 
 
@@ -395,7 +332,6 @@ def get_top_movies_pie_chart(df, year, scope):
     plt.legend(legend_labels, loc='lower center', bbox_to_anchor=(.5, 1.05), shadow=True, ncol=1)
 
     # Save the image with an appropriate filename
-    # plt.savefig(os.path.join('static',f'top_8_{scope}_pie.png'), dpi=600, bbox_inches='tight')
     plt.savefig(os.path.join('static',f'top_8_{scope}_pie.png'), dpi=600, bbox_inches='tight', transparent=True)
     plt.close()
 
