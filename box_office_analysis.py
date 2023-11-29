@@ -61,6 +61,9 @@ def home():
     # create plot for current year
         current_year_csv_path = os.path.join(directory_path, str(end_year) + '_weekly.csv')
         df = pd.read_csv(current_year_csv_path)
+        # reverse and reset the order of the dataframe
+        df = df.iloc[::-1]
+        df = df.reset_index(drop=True)
         gd.plot_weekly_data_by_year(df, end_year)
 
     return render_template('box_office_home.html', years=year_list, selected_year=end_year)
