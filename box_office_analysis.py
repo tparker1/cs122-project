@@ -7,13 +7,14 @@ from flask import render_template, redirect, url_for
 # import the request variable
 from flask import request
 
+import numpy as np
 import pandas as pd
 import os
 
 import get_data as gd
 import save_data as sd
 import matplotlib
-matplotlib.use('qtagg')
+# matplotlib.use('qtagg')
 
 # create a Flask object called app
 app = Flask(__name__)
@@ -77,7 +78,7 @@ def year():
     global start_year, end_year, directory_path
 
     # Get the selected year from the query parameters 
-    selected_year = int(request.args.get('year', 0))
+    selected_year = np.int64(request.args.get('year', 0))
 
     # Check if the selected year is within your range of available years
     if selected_year > max(year_list):

@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Box Office Annual Piechart</title>
+    <title>Box Office Annual Top Movies</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -60,7 +60,7 @@
         }
 
         /* Position the Update Data button to the far right on the same line */
-        .update-data-button {
+        .update-home-button {
             float: right;
         }
     </style>
@@ -71,7 +71,6 @@
         <h1>Box Office Analysis </h1>
         <h2>Top Movies in {{selected_year}} </h2>
     </header>
-</body>
 
 <section>
     <h2>Annual Top Movies</h2>
@@ -81,14 +80,35 @@
         <input type="submit" value="View">
     </form>
 
-    <!-- Display images side by side -->
-    <div style="display: flex; justify-content: space-around;">
-        <img src="static/top_8_domestic_pie.png" alt="Top 8 Domestic Pie Chart" style="width: 40%;">
-        <img src="static/top_8_worldwide_pie.png" alt="Top 8 Worldwide Pie Chart" style="width: 40%;">
-    </div>
+    <!-- Navigation buttons for Previous and Next Year-->
+    <form action="/pie" method="get">
+        <input type="hidden" name="year" value="{{selected_year - 1}}">
+        <input type="submit" value="< Prev">
+    </form>
+
+    <form action="/pie" method="get">
+        <input type="hidden" name="year" value="{{selected_year + 1}}">
+        <input type="submit" value="Next >">
+    </form>
+
+    <!-- Back to Home button -->
+    <form action="/" class="update-home-button">
+        <input type="submit" value="Home">
+    </form>
 </section>
+<!-- Display images side by side -->
+<div style="display: flex; justify-content: space-around;">
+    <img src="static/top_8_domestic_pie.png" alt="Top 8 Domestic Pie Chart" style="width: 40%;">
+    <img src="static/top_8_worldwide_pie.png" alt="Top 8 Worldwide Pie Chart" style="width: 40%;">
+</div>
+
 
 <!-- <img src='static/top_8_domestic_pie.png' alt="{{selected_year}} domestic movies gross png"> -->
+<section>
 
-
+</section>
+<footer>
+    &copy; 2023 Box Office Analysis
+</footer>
+</body>
 </html>'
