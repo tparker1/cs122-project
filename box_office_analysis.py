@@ -111,10 +111,11 @@ def pie():
     elif selected_year < min(year_list):
         selected_year = start_year
 
-    # create pie chart for selected year
-    current_year_csv_path = os.path.join(directory_path, str(selected_year) + '_weekly.csv')
-    df = pd.read_csv(current_year_csv_path)
-    gd.get_top_movies_pie_chart(df, selected_year, 'domestic')
+    # # create pie chart for selected year
+    # current_year_csv_path = os.path.join(directory_path, str(selected_year) + '_weekly.csv')
+    # df = pd.read_csv(current_year_csv_path)
+    # gd.get_top_movies_pie_chart(df, selected_year, 'domestic')
+    gd.run_get_pie_plot(selected_year)
 
     return render_template('pie_chart.html', years=year_list, selected_year=selected_year)
 
