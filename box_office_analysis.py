@@ -135,4 +135,4 @@ def update_data():
 # add a main method to run the app
 # as a typical Python script
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
