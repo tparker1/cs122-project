@@ -1,5 +1,5 @@
 # CS 122 Project: Box Office Dashboard
-![Piechart Screenshot](Piescreenshot.png)
+![Piechart Screenshot](PieScreenshot.png)
 
 ## Authors
 
