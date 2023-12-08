@@ -51,3 +51,5 @@ Window 1 visualizes weekly gross trends of weekly box office data with bar chart
 `export FLASK_ENV=development`
 
 `flask run`
+
+Application is pre-loaded with 2021, 2022, and 2023. Please use the "Update Data" button on the homepage to aquire the rest of the data as CSV files. This feature also updates existing files. 
