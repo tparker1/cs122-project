@@ -46,4 +46,5 @@ Window 1 visualizes weekly gross trends of weekly box office data with bar chart
 
 ### Notes on Running App
 `export FLASK_APP=box_office_analysis.py`
+
 `flask run`
