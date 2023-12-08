@@ -1,10 +1,5 @@
-# import the Flask class from the flask module
 from flask import Flask
-
-# import the render_template, redirect, and url_for function 
 from flask import render_template, redirect, url_for
-
-# import the request variable
 from flask import request
 
 import numpy as np
