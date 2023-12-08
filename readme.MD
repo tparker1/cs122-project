@@ -13,11 +13,6 @@ Box Office Analysis Dashboard (BOAD) allows users to visualize trends at the box
 ## Project Outline and Plan
 
 ### Interface Plan
-Your interface can be either a Graphic User Interface (GUI) generated with
-Python’s Tkinter library, or a web interface, created with Flask. Your interface
-should have at least two windows, such as a home screen and a pop-up window.
-Your interface must have at least 4 widgets such as buttons, drop-down windows,
-or otherwise that allow the user to gather, update, and interact with the data
 
 Box Office Analysis displays data with a web interface, created with Flask. Our interface presents a weekly gross revenue timeseries as a bar chart, as well as a pie chart to compare the annual top 8 domestic and worldwide movies. User can navigate the years and update data with widgets.
 #### Windows
