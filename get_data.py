@@ -1,6 +1,3 @@
-# import matplotlib
-# matplotlib.use('Agg')
-
 # import the requests and BeautifulSoup modules
 import requests
 from bs4 import BeautifulSoup
@@ -13,8 +10,6 @@ import matplotlib.ticker as ticker
 import matplotlib.patheffects as pe
 import matplotlib
 matplotlib.use('qtagg')
-
-
 
 def get_weekly_data_for_year(year="2023"):
     url = "https://www.boxofficemojo.com/weekly/by-year/"+ year + "/"
@@ -109,7 +104,6 @@ def convert_to_datetime(date_str, year_str):
     return datetime_obj
 
 
-
 def clean_pd_weekly_data(appended_data, year):
     df = pd.DataFrame(appended_data, columns = ['Date','Occasion', 'Top10Gross', 'PercentChangeTop10', 'OverallGross', 'PercentChangeOverall', 'Releases', 'Number1Release', 'Week']) 
 
@@ -134,7 +128,6 @@ def clean_pd_weekly_data(appended_data, year):
     # Datetime is first day of the week
     df['Datetime'] = df['Date'].apply(lambda x: convert_to_datetime(x.split("-")[0], year))
     return df
-
 
 
 # def clean_pd_daily_data(appended_data, year):
