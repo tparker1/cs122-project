@@ -55,48 +55,48 @@ def get_weekly_data_for_year(year="2023"):
     return df
 
 
-def get_daily_data_for_year(year="2023"):
-    # Path to the daily box office data, per year
-    url = "https://www.boxofficemojo.com/daily/"+ year+ "/?view=year"
+# def get_daily_data_for_year(year="2023"):
+#     # Path to the daily box office data, per year
+#     url = "https://www.boxofficemojo.com/daily/"+ year+ "/?view=year"
 
-    # get the soup with beautiful soup
-    req=requests.get(url)
-    content=req.text
-    soup=BeautifulSoup(content)
-    rows=soup.findAll('tr')
+#     # get the soup with beautiful soup
+#     req=requests.get(url)
+#     content=req.text
+#     soup=BeautifulSoup(content)
+#     rows=soup.findAll('tr')
     
 
-    appended_data = []
-    for row in rows:
-        data_row = {}
-        data = row.findAll('td')
-        if len(data) == 0:
-            continue
-        if len(data[0].findAll('span')) > 0:
-            #special weekend
-            data_row['Occasion'] = data[0].findAll('span')[0].text
-            data_row['Date'] = data[0].findAll('a')[0].text
-        else:
-            #normal weekend
-            data_row['Occasion'] = ""
-            data_row['Date'] = data[0].text
-        if len(data) == 0:
-            continue
+#     appended_data = []
+#     for row in rows:
+#         data_row = {}
+#         data = row.findAll('td')
+#         if len(data) == 0:
+#             continue
+#         if len(data[0].findAll('span')) > 0:
+#             #special weekend
+#             data_row['Occasion'] = data[0].findAll('span')[0].text
+#             data_row['Date'] = data[0].findAll('a')[0].text
+#         else:
+#             #normal weekend
+#             data_row['Occasion'] = ""
+#             data_row['Date'] = data[0].text
+#         if len(data) == 0:
+#             continue
 
-        data_row['Day'] = data[1].text
-        data_row['Day#'] = data[2].text
-        data_row['Top10Gross'] = data[3].text
-        data_row['PercentChangeYD'] = data[4].text
-        data_row['PercentChangeLW'] = data[5].text
-        data_row['Releases'] = data[6].text
-        data_row['Number1Release'] = data[7].text
-        data_row['Gross'] = data[8].text
+#         data_row['Day'] = data[1].text
+#         data_row['Day#'] = data[2].text
+#         data_row['Top10Gross'] = data[3].text
+#         data_row['PercentChangeYD'] = data[4].text
+#         data_row['PercentChangeLW'] = data[5].text
+#         data_row['Releases'] = data[6].text
+#         data_row['Number1Release'] = data[7].text
+#         data_row['Gross'] = data[8].text
 
-        appended_data.append(data_row)
+#         appended_data.append(data_row)
 
-        df = clean_pd_daily_data(appended_data, year)
+#         df = clean_pd_daily_data(appended_data, year)
 
-    return df
+#     return df
 
 
 def convert_to_datetime(date_str, year_str):
@@ -137,53 +137,125 @@ def clean_pd_weekly_data(appended_data, year):
 
 
 
-def clean_pd_daily_data(appended_data, year):
-    df = pd.DataFrame(appended_data, columns = ['Occasion', 'Date', 'Day', 'Day#', 'Top10Gross', 'PercentChangeYD', 'PercentChangeLW', 'Releases', 'Number1Release', 'Gross'])
+# def clean_pd_daily_data(appended_data, year):
+#     df = pd.DataFrame(appended_data, columns = ['Occasion', 'Date', 'Day', 'Day#', 'Top10Gross', 'PercentChangeYD', 'PercentChangeLW', 'Releases', 'Number1Release', 'Gross'])
 
-    # fix data types for each column in the dataframe
-    df['Day'] = df['Day'].astype(str)
-    df['Day#'] = df['Day#'].astype(int)
-    df['Releases'] = df['Releases'].astype(int)
-    df['Number1Release'] = df['Number1Release'].astype(str)
+#     # fix data types for each column in the dataframe
+#     df['Day'] = df['Day'].astype(str)
+#     df['Day#'] = df['Day#'].astype(int)
+#     df['Releases'] = df['Releases'].astype(int)
+#     df['Number1Release'] = df['Number1Release'].astype(str)
 
-    df['Gross'] = df['Gross'].str.replace('$', '')
-    df['Gross'] = df['Gross'].str.replace(',', '')
-    df['Gross'] = df['Gross'].astype(int)
+#     df['Gross'] = df['Gross'].str.replace('$', '')
+#     df['Gross'] = df['Gross'].str.replace(',', '')
+#     df['Gross'] = df['Gross'].astype(int)
 
-    df['Top10Gross'] = df['Top10Gross'].str.replace('$', '')
-    df['Top10Gross'] = df['Top10Gross'].str.replace(',', '')
-    df['Top10Gross'] = df['Top10Gross'].astype(int)
+#     df['Top10Gross'] = df['Top10Gross'].str.replace('$', '')
+#     df['Top10Gross'] = df['Top10Gross'].str.replace(',', '')
+#     df['Top10Gross'] = df['Top10Gross'].astype(int)
 
-    df['PercentChangeYD'] = df['PercentChangeYD'].astype(str)
-    df['PercentChangeLW'] = df['PercentChangeLW'].astype(str)
+#     df['PercentChangeYD'] = df['PercentChangeYD'].astype(str)
+#     df['PercentChangeLW'] = df['PercentChangeLW'].astype(str)
 
-    df['Datetime'] = df['Date'].apply(lambda x: convert_to_datetime(x, year))
+#     df['Datetime'] = df['Date'].apply(lambda x: convert_to_datetime(x, year))
 
-    return df
-
-
-
-def plot_daily_data_by_year(df, year):
-    plt.figure(figsize=(20,10))
-    plt.plot(df['Datetime'], df['Gross'])
-    plt.title('Daily Gross for ' + str(year))
-    plt.xlabel('Date')
-    plt.ylabel('Gross')
-
-    # Change the y-axis formatter to display full values
-    plt.gca().get_yaxis().set_major_formatter(ticker.FuncFormatter(lambda x, p: format(int(x), ',')))
-
-    plt.xticks(rotation=45)
-    plt.savefig('daily_gross.png')
+#     return df
 
 
-    return 
+
+# # def plot_daily_data_by_year(df, year):
+# #     plt.figure(figsize=(20,10))
+# #     plt.plot(df['Datetime'], df['Gross'])
+# #     plt.title('Daily Gross for ' + str(year))
+# #     plt.xlabel('Date')
+# #     plt.ylabel('Gross')
+
+# #     # Change the y-axis formatter to display full values
+# #     plt.gca().get_yaxis().set_major_formatter(ticker.FuncFormatter(lambda x, p: format(int(x), ',')))
+
+# #     plt.xticks(rotation=45)
+# #     plt.savefig('daily_gross.png')
+
+
+# #     return 
+
+from datetime import datetime as dt
+import time
+
+def toYearFraction(date):
+    def sinceEpoch(date): # returns seconds since epoch
+        return time.mktime(date.timetuple())
+    s = sinceEpoch
+
+    year = date.year
+    startOfThisYear = dt(year=year, month=1, day=1)
+    startOfNextYear = dt(year=year+1, month=1, day=1)
+
+    yearElapsed = s(date) - s(startOfThisYear)
+    yearDuration = s(startOfNextYear) - s(startOfThisYear)
+    fraction = yearElapsed/yearDuration
+
+    return date.year + fraction
+
+def calculate_trendline(df):
+    # convert the datetime column to a datetime object
+    df['Datetime2'] = pd.to_datetime(df['Datetime'])
+    df['dec_yr'] = df['Datetime2'].apply(lambda x: toYearFraction(x))
+
+    # Fit a line to the data
+    z = np.polyfit(df['dec_yr'], df['OverallGross'], 1)
+    p = np.poly1d(z)
+
+    # get a two column array of dec_yr, trendline values
+    trendline = p(df['dec_yr'])
+    dates = df['dec_yr']
+    slope = z[0]
+
+    return trendline, dates, slope
+
+# Saving the plot before the trendline calculation in case there is an issue: 
+# def plot_weekly_data_by_year(df, year):
+#     palette = ['#003f5c', '#2f4b7c', '#665191', '#a05195', '#d45087', '#f95d6a', '#ff7c43', '#ffa600', '#001f2e']
+
+#     plt.figure(figsize=(20,10))
+#     plt.bar(df['Datetime'], df['OverallGross'], color=palette[1], edgecolor=palette[0], linewidth=2.5, alpha=0.9, width=1)
+    
+#     plt.xlabel('Week', fontsize=22, labelpad=20, color=palette[-1])
+#     plt.ylabel('Gross\n$_{(in\, \$MM)}$', fontsize=22, labelpad=20, color=palette[-1])
+
+#     plt.gca().get_yaxis().set_major_formatter(ticker.FuncFormatter(lambda x, p: format(int(x/1000000), ',')))
+
+#     plt.xticks(df['Datetime'], df['Week'], rotation=0, fontsize=14, color=palette[-1])
+
+#     plt.ylim(0, df['OverallGross'].max() * 1.1)
+    
+#     for label in plt.gca().xaxis.get_ticklabels()[::2]:
+#         label.set_visible(False)
+
+#     yticks = plt.yticks()[0]
+#     plt.yticks(yticks[:], fontsize=14, color=palette[-1])
+
+#     if not os.path.exists('static'):
+#         os.makedirs('static')
+
+#     plt.subplots_adjust(top=0.9)  # Adjust the top margin
+#     plt.savefig(os.path.join('static', 'weekly_gross.png'), dpi=300, bbox_inches='tight', transparent=True)
+
+#     return
 
 def plot_weekly_data_by_year(df, year):
     palette = ['#003f5c', '#2f4b7c', '#665191', '#a05195', '#d45087', '#f95d6a', '#ff7c43', '#ffa600', '#001f2e']
 
     plt.figure(figsize=(20,10))
     plt.bar(df['Datetime'], df['OverallGross'], color=palette[1], edgecolor=palette[0], linewidth=2.5, alpha=0.9, width=1)
+
+    # NEW CODE
+    trendline, dates, slope = calculate_trendline(df)
+    # Plot the trendline
+    sign = '+' if np.sign(slope) > 0 else '-'
+    label=f'Overall Trend: {sign}${abs(slope):,.0f}'
+    plt.plot(df['Datetime'], trendline, 'grey', linestyle='dashed', label=label)
+
     
     plt.xlabel('Week', fontsize=22, labelpad=20, color=palette[-1])
     plt.ylabel('Gross\n$_{(in\, \$MM)}$', fontsize=22, labelpad=20, color=palette[-1])
@@ -203,10 +275,14 @@ def plot_weekly_data_by_year(df, year):
     if not os.path.exists('static'):
         os.makedirs('static')
 
+    plt.legend(loc='upper right', fontsize=14, frameon=False)
+
     plt.subplots_adjust(top=0.9)  # Adjust the top margin
     plt.savefig(os.path.join('static', 'weekly_gross.png'), dpi=300, bbox_inches='tight', transparent=True)
 
     return
+
+
 
 def get_top_worldwide_movies_df(year = '2023'):
     
