@@ -43,3 +43,10 @@ Example of data from Box Office Mojo.
 
 Box Office Analysis utilizes matplotlib to create bar and pie charts for depicting the trends in weekly domestic box office gross over time and comparing annual domestic and worldwide top movies.
 Window 1 visualizes weekly gross trends of weekly box office data with bar chart timeseries. Window 2 uses side-by-side pie charts to vizualize and compare the domestic and worldwide top 8 movies for a given year. 
+
+### Notes on Running App
+`export FLASK_APP=box_office_analysis.py`
+
+`export FLASK_ENV=development`
+
+`flask run`
