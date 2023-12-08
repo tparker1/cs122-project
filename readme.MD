@@ -19,16 +19,18 @@ should have at least two windows, such as a home screen and a pop-up window.
 Your interface must have at least 4 widgets such as buttons, drop-down windows,
 or otherwise that allow the user to gather, update, and interact with the data
 
-Box Office Analysis displays data with a web interface, created with Flask. Our interface presents a weekly gross revenue timeseries as a bar chart, as well as a pie chart to compare the annual top 8 domestic and worldwide movies. User can navigate the years and update data with widgets.<br><br>
-Window 1: Home screen with timeseries bar chart of gross revenue by week.<br><br>
-Window 2: Two pie charts of top 8 movies (domestic and worldwide), by annual gross, for the queried year.<br><br>
-Widget 1: A drop-down menu to change the year of data shown on window 1<br><br>
-Widget 2: A go button to reload/update the data shown on window 1<br><br>
-Widget 3: A next button to show the next year and a previous button to show the bar chart for the previous year<br><br>
-Widget 4: An entry widget (at the bottom of window 1) to open window 2 that displays pie charts for the entered year<br><br>
-Widget 5: An entry widget to display pie charts for a given year<br><br>
-Widget 6: A next button to show the next year and a previous button to show the previous year pie charts<br><br>
-Widget 7: A home button that returns the user to Window 1
+Box Office Analysis displays data with a web interface, created with Flask. Our interface presents a weekly gross revenue timeseries as a bar chart, as well as a pie chart to compare the annual top 8 domestic and worldwide movies. User can navigate the years and update data with widgets.
+#### Windows
+1. Home screen with timeseries bar chart of gross revenue by week.
+2. Two pie charts of top 8 movies (domestic and worldwide), by annual gross, for the queried year. <br>
+#### Widgets
+1. A drop-down menu to change the year of data shown on window 1.
+2. A go button to reload/update the data shown on window 1.
+3. A next button to show the next year and a previous button to show the bar chart for the previous year.
+4. An entry widget (at the bottom of window 1) to open window 2 that displays pie charts for the entered year.
+5. An entry widget to display pie charts for a given year.
+6. A next button to show the next year and a previous button to show the previous year pie charts.
+7. A home button that returns the user to Window 1
 
 ### Access Web Data
 Application uses Requests and Beautiful soup to gather data from [Box Office Mojo Domestic Box Office Weeklies](https://www.boxofficemojo.com/weekly/).
