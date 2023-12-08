@@ -1,4 +1,5 @@
 # CS 122 Project: Box Office Analysis Dashboard
+![BarChart Screenshot](BarScreenshot.png)
 ![Piechart Screenshot](PieScreenshot.png)
 
 ## Authors
