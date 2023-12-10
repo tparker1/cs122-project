@@ -54,7 +54,6 @@ For Mac based OS:
 `flask run`
 
 For Windows and alternatively:
-Naviage to the directory, then:
 `python box_office_analysis.py`
 
 
