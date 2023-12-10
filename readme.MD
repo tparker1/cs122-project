@@ -46,10 +46,16 @@ Box Office Analysis utilizes matplotlib to create bar and pie charts for depicti
 Window 1 visualizes weekly gross trends of weekly box office data with bar chart timeseries. Window 2 uses side-by-side pie charts to vizualize and compare the domestic and worldwide top 8 movies for a given year. 
 
 # Notes on Running App
+For Mac based OS:
 `export FLASK_APP=box_office_analysis.py`
 
 `export FLASK_ENV=development`
 
 `flask run`
+
+For Windows and alternatively:
+Naviage to the directory, then:
+`python box_office_analysis.py`
+
 
 Application is pre-loaded with 2021, 2022, and 2023. Please use the "Update Data" button on the homepage to aquire the rest of the data as CSV files. This feature also updates existing files. 
